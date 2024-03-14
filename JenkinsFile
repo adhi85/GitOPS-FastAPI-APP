@@ -9,8 +9,7 @@ node {
     stage('Build image') {
         // Assuming DATABASE_URL is stored in a Jenkins credential with ID 'database-url'
         withCredentials([string(credentialsId: 'database-url', variable: 'DATABASE_URL')]) {
-            def dockerBuildCommand = "docker build -t forsignup8580/todoapp --build-arg DATABASE_URL=${env.DATABASE_URL} ."
-            app = sh dockerBuildCommand
+            app = docker.build("forsignup8580/todoapp", "--build-arg DATABASE_URL=${env.DATABASE_URL}", ".")
         }
     }
 
