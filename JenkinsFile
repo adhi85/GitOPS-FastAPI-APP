@@ -2,15 +2,10 @@ node {
     def app
 
     stage('Clone repository') {
-      
-
+        
         checkout scm
     }
 
-    stage('Build image') {
-  
-       app = docker.build("forsignup8580/todoapp")
-    }
     stage('Build image') {
         // Assuming DATABASE_URL is stored in a Jenkins credential with ID 'database-url'
         withCredentials([string(credentialsId: 'database-url', variable: 'DATABASE_URL')]) {
@@ -25,7 +20,6 @@ node {
             sh 'echo "Tests passed"'
         }
     }
-    
 
     stage('Push image') {
         
