@@ -8,9 +8,9 @@ node {
 
     stage('Build image') {
         // Assuming DATABASE_URL is stored in a Jenkins credential with ID 'database-url'
-        withCredentials([string(credentialsId: 'database-url', variable: 'DATABASE_URL')]) {
+        
             app = docker.build("forsignup8580/todoapp")
-        }
+        
     }
 
     stage('Test image') {
